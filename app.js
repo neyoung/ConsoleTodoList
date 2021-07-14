@@ -19,7 +19,7 @@ while (userInput.toLowerCase() !== 'quit' && userInput.toLowerCase() !== 'q') {
         if (todoList.toString() !== '') {
             console.log('*********');
             for (const [index, element] of todoList.entries()) {
-                console.log(`[${index}]: ${element}`);
+                console.log(`${index}: ${element}`);
             }
             console.log('*********');
         } else {
