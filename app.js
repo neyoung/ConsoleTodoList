@@ -8,11 +8,12 @@ let userInput = prompt("What would you like to do?");
 const todoList = [];
 
 // Application will quit when 'quit' is entered. Case is not senstive for any entered commands.
-while (userInput.toLowerCase() !== 'quit') {
+// && operator is correct because if 'q' is entered that means TRUE && FALSE = FALSE which will stop while loop. Otherwise if || operator is used then the expression would be TRUE || FALSE = TRUE and the loop would not stop.
+while (userInput.toLowerCase() !== 'quit' && userInput.toLowerCase() !== 'q') {
     if (userInput.toLowerCase() === 'new') {
-        userInput = prompt("Enter new todo");
-        todoList.push(userInput);
-        console.log(`${userInput} added to list`);
+        const newTodo = prompt("Enter new todo");
+        todoList.push(newTodo);
+        console.log(`${newTodo} added to list`);
     } else if (userInput.toLowerCase() === 'list') {
         // Checks whether todo list is empty before listing all todos
         if (todoList.toString() !== '') {
@@ -27,9 +28,13 @@ while (userInput.toLowerCase() !== 'quit') {
     } else if (userInput.toLowerCase() === 'delete') {
         // Checks whether todo list is empty before deleting a todo
         if (todoList.toString() !== '') {
-            userInput = parseInt(prompt("Enter the index of todo to delete"));
-            let removed = todoList.splice(userInput, 1);
-            console.log(`${removed} removed from list`)
+            const index = parseInt(prompt("Enter the index of todo to delete"));
+            if (!Number.isNaN(index)) {
+                let deleted = todoList.splice(index, 1);
+                console.log(`${deleted} removed from list`)
+            } else {
+                console.log('Invalid index entered');
+            }
         } else {
             console.log('The Todo List is empty');
         }
